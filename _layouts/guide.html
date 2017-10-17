@@ -6,8 +6,10 @@ layout:
 
   {% assign html_tag = '<html' %}
   {% assign head_tag = '</head>' %}
+  {% assign end_tag = '</head>' %}
   {% assign nav_tag = '<table class="navigation"' %}
   {% assign book_tag = '<div class="book"'%}
+  {% assign index_tag = '<h1 class="guides">' %}
 
   {% assign html_mod = '<html class="cockpit-guide"'%}
 
@@ -28,9 +30,18 @@ layout:
 
   {% capture header_html %}{% include page_header.html %}{% endcapture %}
 
+  {% assign end_mod = end_tag %}
+
   {% if content contains book_tag %}
     {% assign header_orig = book_tag %}
     {% assign header_mod = book_tag | prepend: header_html %}
+  {% elsif content contains index_tag %}
+    {% assign header_orig = head_tag %}
+    {% assign header_mod = head_tag
+      | append: '<body><section class="guide-index">'
+      | append: header_html %}
+    {% assign end_mod = head_tag
+      | prepend: '</section>' %}
   {% else %}
     {% assign header_orig = nav_tag %}
     {% assign header_mod = nav_tag | prepend: header_html %}
@@ -42,4 +53,5 @@ layout:
   | replace_first: html_tag, html_mod
   | replace_first: head_tag, head_mod
   | replace_first: header_orig, header_mod
+  | replace_first: end_tag, end_mod
 }}

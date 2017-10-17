@@ -49,6 +49,11 @@ defaults:
       type: posts
     values:
       layout: "post"
+  -
+    scope:
+      path: "guide/index.html"
+    values:
+      index: false
 
 # GitHub builds with safe mode, so enable it for previewing locally too
 safe: true

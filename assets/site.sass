@@ -114,6 +114,7 @@ $headline-font: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, Liberation Sa
 $gutter-width: calc((100vw - 65rem) / 2)
 
 .page-content,
+.cockpit-guide div.guides,
 .cockpit-guide .book,
 .cockpit-guide .chapter
   a[href]
@@ -513,6 +514,12 @@ article
       font-size: 150%
 
 html.cockpit-guide
+  %guide-title
+    text-align: center !important
+    font-family: $headline-font
+    font-size: 1.75rem !important
+    line-height: 3rem
+
   body
     /* Guide CSS has padding-top set as important; let's override to fix Chrome
     padding-top: 0 !important
@@ -528,10 +535,7 @@ html.cockpit-guide
       padding-right: $gutter-width
 
     th
-      text-align: center !important
-      font-family: $headline-font
-      font-size: 1.75rem !important
-      line-height: 3rem
+      @extend %guide-title
 
       > p
         font: inherit !important
@@ -562,6 +566,33 @@ html.cockpit-guide
       margin: 6ex 0 3ex
       font-size: 120%
       font-weight: bold
+
+  .guide-index
+    > h1
+      @extend %guide-title
+
+    > div.guides
+      max-width: 50rem
+      margin: 0 auto
+      padding: 2em 1em
+      text-align: center
+
+      h2
+        padding-top: 3rem
+
+      p
+        margin-left: 0
+        margin: 1rem auto
+
+      a
+        font-size: 1.2rem
+
+      > a
+        display: inline-block
+        width: 10ex
+        margin: 0
+        padding: 1ex
+        text-align: center
 
   @media screen and (max-width: $on-laptop)
     table.navigation
