@@ -79,7 +79,7 @@ About Cockpit
   <section class="intro">
     <div class="wrapper"><div class="grid-center-noBottom">
       <div class="side-left col-7_md-11">{{ intro-left  | markdownify }}</div>
-      <div class="side-right col-5_md-11-bottom"><span class="intro-image">{{ intro-right | markdownify }}</span></div>
+      <div class="side-right col-5_md-11-bottom"><div class="intro-image">{{ intro-right | markdownify }}</div></div>
     </div></div>
   </section>
 
@@ -107,7 +107,7 @@ About Cockpit
 </footer>
 {% include page_footer.html %}
 
-<script>
+<script><!--
 $(function(){
   $(document).on('click', 'a.screenshot.zoom', function(ev){
     desc = $('img', this).attr('alt');
@@ -120,4 +120,5 @@ $(function(){
     });
   });
 });
+//-->
 </script>
