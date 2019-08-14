@@ -16,6 +16,9 @@ Use your system user account and password to log in. See [the guide](guide/lates
 {% comment %}
 ## Data for the browser table comes from `_data/browsers.yml` ##
 {% endcomment %}
+
+<div id="browser-supported"></div>
+
 {:.browser-support}
 {% for browser in site.data.browsers %}
 - {:.browser-{{ browser.first }}} ![](/images/site/browser-{{ browser.first }}.svg) {{
