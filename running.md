@@ -19,7 +19,15 @@ Use your system user account and password to log in. See [the guide](guide/lates
 ## Browser features are defined in `_scripts/update-browser-data.rb`
 {% endcomment %}
 
-<div id="browser-supported"></div>
+<div id="browser-support">
+<div class="is-supported">
+Hooray! Your browser is supported.
+</div>
+
+<div class="is-not-supported">
+Sorry! Your browser is not supported.
+</div>
+</div>
 
 {:.browser-support}
 {% for browser in site.data.browsers %}{%
@@ -36,7 +44,7 @@ Use your system user account and password to log in. See [the guide](guide/lates
   %}{%
     if (browser.version > ver_caniuse_float)
   %}{{
-  browser.version
+    browser.version
   }}{% else %}{{
     ver_caniuse
   }}{%

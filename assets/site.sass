@@ -498,3 +498,8 @@ article
 
 .post-title
   letter-spacing: 0
+
+#browser-support
+  &[data-browser-supported="true"] .is-not-supported,
+  &:not([data-browser-supported="true"]) .is-supported
+    display: none
