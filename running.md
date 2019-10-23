@@ -14,20 +14,34 @@ Use your system user account and password to log in. See [the guide](guide/lates
 ### Minimum client browser versions
 
 {% comment %}
-## Data for the browser table comes from `_data/browsers.yml` ##
+## Data for the browser table comes from `_data/browsers.yml`
+## Browser versions come from `_data/browser_support.yml` (generated)
+## Browser features are defined in `_scripts/update-browser-data.rb`
 {% endcomment %}
 
 <div id="browser-supported"></div>
 
 {:.browser-support}
-{% for browser in site.data.browsers %}
-- {:.browser-{{ browser.first }}} ![](/images/site/browser-{{ browser.first }}.svg) {{
+{% for browser in site.data.browsers %}{%
+  assign slug = browser.name | downcase
+%}
+- {:.browser-{{ slug }}} ![](/images/site/browser-{{ slug }}.svg) {{
   browser.vendor
   }} {{
   browser.name
-  }} {{
+  }} {%
+  assign ver_caniuse = site.data.browser_support["browsers"][slug]
+  %}{%
+  assign ver_caniuse_float = ver_caniuse | plus: 0
+  %}{%
+    if (browser.version > ver_caniuse_float)
+  %}{{
   browser.version
-}}{% endfor %}
+  }}{% else %}{{
+    ver_caniuse
+  }}{%
+    endif
+  %}{% endfor %}
 
 ## Installation & Setup
 
