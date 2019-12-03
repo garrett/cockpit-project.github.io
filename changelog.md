@@ -5,6 +5,9 @@
 {% assign category_posts = site.posts | where: 'category', category %}
 
 {% for post in category_posts %}
+
+{% capture release %}
+
 {% assign version = post.title 
     | split: "and" 
     | first 
@@ -14,13 +17,14 @@
     | first
     | round: 5 %}
 
-{% assign datenum = post.date | date: "%Y%m%d" %}
+{% comment %}
+    Try to extract the version again, but from the content this time
+{% endcomment %}
+{% if version == 0 %}
+{% assign version = post.content | markdownify | strip_html | split: "Cockpit " | last | split: " " | first | round: 5 %}
+{% endif %}
 
-<h2>
-<time class="published" datetime="{{ post.date | dated_to_xmlschema }}">
-{{ post.date | date: "%Y-%m-%d" }}
-</time>
-</h2>
+{% assign datenum = post.date | date: "%Y%m%d" %}
 
 {% if version != 0 %}
 ### [Version {{ version }}]({{ post.url }})
@@ -28,11 +32,13 @@
 ### [{{ post.title }}]({{ post.url }})
 {% endif %}
 
-<pre>
-{{ version }}
-{{ post.title }}
-</pre>
+<time class="published" datetime="{{ post.date | dated_to_xmlschema }}">
+{{ post.date | date: "%Y-%m-%d" }}
+</time>
 
 {% include post.html post=post markdown_list=true %}
 
+{% endcapture %}
+
+<article id="{{post.date | date: "%Y-%m-%d"}}">{{ release | markdownify }}</article>
 {% endfor %}
