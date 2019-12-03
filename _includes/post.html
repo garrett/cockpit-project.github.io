@@ -7,9 +7,11 @@
 {% assign summary_length = site.blog_summary_length | default: 50 %}
 {% assign ignore = include.ignore | default: site.blog_ignore | split: ',' %}
 {% assign summary_headings = site.blog_summary_headings %}
+{% assign markdown_list = include.markdown_list %}
 {% assign newline = '
 ' %}
 
+{% capture output %}
 <article class="post hentry" id="{{ post.url | replace: "/", "-" }}">
   <header class="post-header">
     <h2 class="post-title entry-title">
@@ -122,4 +124,11 @@
       {% endif %}
     </div>
   </div>
+{% endif %}
+{% endcapture %}
+
+{% if markdown_list %}
+{{ content_headings }}
+{% else %}
+{{ output }}
 {% endif %}
