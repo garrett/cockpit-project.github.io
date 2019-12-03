@@ -1,7 +1,8 @@
+---
+title: Changelog
+---
+
 {% assign category = "release" %}
-
-<h1>Changelog</h1>
-
 {% assign category_posts = site.posts | where: 'category', category %}
 
 {% for post in category_posts %}
@@ -32,12 +33,15 @@
 ### [{{ post.title }}]({{ post.url }})
 {% endif %}
 
-<time class="published" datetime="{{ post.date | dated_to_xmlschema }}">
+<time class="published" datetime="{{ post.date | date_to_xmlschema }}">
 {{ post.date | date: "%Y-%m-%d" }}
 </time>
 
 {% include post.html post=post markdown_list=true %}
 
+{% if version != 0 %}
+[view release on GitHub](https://github.com/cockpit-project/cockpit/releases/tag/{{ version}})
+{% endif %}
 {% endcapture %}
 
 <article id="{{post.date | date: "%Y-%m-%d"}}">{{ release | markdownify }}</article>
