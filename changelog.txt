@@ -1,0 +1,38 @@
+---
+layout:
+---
+{% assign category = "release" %}
+{% assign category_posts = site.posts | where: 'category', category %}
+Changelog
+
+{% for post in category_posts %}
+{% capture setup %}
+{% assign version = post.title 
+    | split: "and" 
+    | first 
+    | split: "Cockpit " 
+    | last 
+    | split: " " 
+    | first
+    | round: 5 %}
+
+{% comment %}
+    Try to extract the version again, but from the content this time
+{% endcomment %}
+{% if version == 0 %}
+{% assign version = post.content | markdownify | strip_html | split: "Cockpit " | last | split: " " | first | round: 5 %}
+{% endif %}
+
+{% assign datenum = post.date | date: "%Y%m%d" %}
+
+{% endcapture %}{% capture release %}
+{% if version != 0 %}
+### [Version {{ version }}]({{ post.url }})
+{% else %}
+### [{{ post.title }}]({{ post.url }})
+{% endif %}
+{{ post.date | date: "%Y-%m-%d" }}
+{% include post.html post=post markdown_list=true %}
+{% endcapture %}
+{{ release | strip }}
+{% endfor %}
