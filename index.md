@@ -4,6 +4,8 @@ layout: essential
 class: front-page
 ---
 {% include page_header.html %}
+{% capture newline %}
+{% endcapture %}
 
 {% comment %}
 ##### Content #####
@@ -23,6 +25,63 @@ web-based interface for your servers
 [![Docker screenshot]({{ site.baseurl }}/images/site/screenshot-docker.png)]({{ site.baseurl }}/images/site/screenshot-docker.png){:.screenshot.zoom}
 {% endcapture %}
 
+{% capture intro-text %}
+## Introducing Cockpit
+
+Cockpit is a web-based graphical interface for servers and is intended for everyone, especially those who are:
+
+{:.audience-list}
+- **new to Linux** (including Windows admins)
+- **familiar with Linux** and want an easy, graphical way to administer servers
+- **expert admins** who use other tools and want to quickly check-in on systems
+
+## Cockpit is (nearly) everywhere
+
+You can install Cockpit on the major distributions, including:
+
+{:.distro-logos}
+{%
+  for distro in site.data.distros
+%}- [![{{ distro.name }}](/images/site/os-{{ distro.first}}.svg)]({{ site.baseurl }}/running.html#{{ distro.first }})
+{% endfor %}
+
+Once Cockpit is up and running, you can access systems from all major web browsers on any operating system (including Windows, MacOS, and Android).
+
+## Simple to use
+
+After installing and enabling Cockpit, accessing Cockpit is usually as easy as visiting port 9090 on your server (for example: <https://localhost:9090/> in a browser on the same machine as Cockpit).
+
+But don't worry&mdash;Cockpit itself doesn't eat resources or even run in the background when you're not using it. It only starts on demand, thanks to using systemd socket activation.
+
+## Compatible with your existing workflows
+
+Have a favorite app or command line tool that you use on your servers? You can keep using it. Cockpit uses the same system tooling you would use from the command line. You can switch back and forth between Cockpit and whatever else you like. Cockpit even has  built-in terminal, which is useful  when you connect from a non-Linux device.
+
+## Using Cockpit
+
+Using Cockpit means you don't *have to* remember commands at a command-line. But there's a whole lot more you can do with Cockpit:
+
+{:.using-cockpit}
+- Keep an eye on your network
+- Easily configure your firewall
+- Manage your storage (including RAID and LUKS partitions)
+- Create and manage virtual machines
+- Download and run containers
+- Browse and search system logs
+- Inspect a system's hardware
+- Upgrade software
+- Keep tabs on performance
+- Manage user accounts
+- Inspect and interact with systemd-based services
+- Use a terminal on your remote server in your local web browser
+- Log in to remote servers
+- Extend Cockpit's functionality by installing a growing list of apps and add-ons
+
+*[RAID]: Redundant Array of Inexpensive Disks
+*[LUKS]: Linux Unified Key Setup (encryption)
+
+Basically, you can think of Cockpit like a graphical "desktop interface", but for your servers.
+{% endcapture %}
 
 {% assign blurbs_highlight = 6 %}
 
@@ -32,9 +91,6 @@ web-based interface for your servers
 
 ### Discoverable
 Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It's easy to start containers, administer storage, configure networks, and inspect logs.
-
-[![Storage screenshot]({{ site.baseurl }}/images/site/screenshot-storage.png)]({{ site.baseurl}}/images/site/screenshot-storage.png)
-{:.screenshot.zoom}
 
 ### Designed & tested
 Cockpit is designed with your goals in mind. We also routinely test Cockpit with usability studies to make it work the way you'd expect. As a result, Cockpit gets easier to use all the time.
@@ -55,9 +111,6 @@ You can jump between a terminal and the web interface at any time. There's even 
 Keep using the command line, Ansible, and your other favorite tools and add Cockpit to the mix with no issues.
 
 A service started via Cockpit can be stopped in a terminal. Likewise, if an error occurs in a terminal, it's also in Cockpit's journal.
-
-[![Network screenshot]({{ site.baseurl }}/images/site/screenshot-network.png)]({{ site.baseurl }}/images/site/screenshot-network.png)
-{:.screenshot.zoom}
 
 ### Sign in like normal
 By default, Cockpit uses [your system's normal user logins and privileges]({{ site.baseurl }}/guide/latest/privileges). You don't need to set up any special accounts. Network-wide logins are also supported through [single-sign-on]({{ site.baseurl }}/guide/latest/sso) and other [authentication]({{ site.baseurl }}/guide/latest/authentication) techniques.
@@ -81,9 +134,6 @@ Immediately understand the health of your server. Cockpit's overview page shows 
 
 ### Multi-server
 Monitor and administer [several servers]({{ site.baseurl }}/guide/latest/feature-machines.html) at the same time. Add new hosts and your main server will look after its buddies.
-
-[![Dashboard screenshot]({{ site.baseurl }}/images/site/screenshot-dashboard.png)]({{ site.baseurl }}/images/site/screenshot-dashboard.png)
-{:.screenshot.zoom}
 
 ### Troubleshoot
 Fix pesky problems with ease.
@@ -138,12 +188,6 @@ About Cockpit
 {% endcapture %}
 
 
-{% comment %}
-##### Scaffolding #####
-{% endcomment %}
-{% capture newline %}
-{% endcapture %}
-
 {% capture badge %}
 {% assign release = site.posts | where: "category", "release" | first %}
 {% assign version = release.title | split: "and" | first | split: " " | last %}
@@ -154,6 +198,22 @@ About Cockpit
 </a>
 {% endcapture %}
 
+{% capture screenshots %}
+[![Storage screenshot]({{ site.baseurl }}/images/site/screenshot-storage.png)]({{ site.baseurl}}/images/site/screenshot-storage.png)
+{:.screenshot.zoom}
+
+[![Network screenshot]({{ site.baseurl }}/images/site/screenshot-network.png)]({{ site.baseurl }}/images/site/screenshot-network.png)
+{:.screenshot.zoom}
+
+[![Dashboard screenshot]({{ site.baseurl }}/images/site/screenshot-dashboard.png)]({{ site.baseurl }}/images/site/screenshot-dashboard.png)
+{:.screenshot.zoom}
+{% endcapture %}
+
+{% comment %}
+##### Scaffolding #####
+{% endcomment %}
+
+{% capture output %}
 <div class="intro-background"></div>
 
 <section class="intro">
@@ -166,6 +226,8 @@ About Cockpit
 <div id="page-wrap" class="page-content" role="main">
   <section class="wrapper">
     <div class="badge">{{ badge }}</div>
+
+    <section class="intro-text">{{ intro-text | markdownify }}</section>
 
     <section class="blurbs">
       {% assign blurbs_rendered = blurbs | split: '---' %}
@@ -212,3 +274,4 @@ $(function(){
 });
 //-->
 </script>
+{% endcapture %}{{ output }}
