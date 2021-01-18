@@ -49,6 +49,7 @@ Once Cockpit is up and running, you can access systems from all major web browse
 
 ## Simple to use
 
+{:style="text-decoration-skip-ink:none"}
 After installing and enabling Cockpit, accessing Cockpit is usually as easy as visiting port 9090 on your server (for example: <https://localhost:9090/> in a browser on the same machine as Cockpit).
 
 But don't worry&mdash;Cockpit itself doesn't eat resources or even run in the background when you're not using it. It only starts on demand, thanks to using systemd socket activation.
