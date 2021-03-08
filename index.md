@@ -13,16 +13,12 @@ First we set up & capture the content, then we render it in the scaffolding belo
 {% endcomment %}
 
 
-{% capture intro-left %}
+{% capture intro-lede %}
 The [easy-to-use](#easy-to-use),
 [integrated](#integrated),
 [glanceable](#glanceable),
 and [open](#open-ended)
 web-based interface for your servers
-{% endcapture %}
-
-{% capture intro-right %}
-[![Docker screenshot]({{ site.baseurl }}/images/site/screenshot-docker.png)]({{ site.baseurl }}/images/site/screenshot-docker.png){:.screenshot.zoom}
 {% endcapture %}
 
 {% capture intro-text %}
@@ -35,7 +31,11 @@ Cockpit is a web-based graphical interface for servers and is intended for every
 - **familiar with Linux** and want an easy, graphical way to administer servers
 - **expert admins** who use other tools and want to quickly check-in on systems
 
-## Cockpit is (nearly) everywhere
+## Compatible with your existing workflows
+
+Have a favorite app or command line tool that you use on your servers? You can keep using it. Cockpit uses the same system tooling you would use from the command line. You can switch back and forth between Cockpit and whatever else you like. Cockpit even has a built-in terminal, which is useful when you connect from a non-Linux device.
+
+## Cockpit works (nearly) everywhere
 
 You can install Cockpit on the major distributions, including:
 
@@ -53,10 +53,6 @@ Once Cockpit is up and running, you can access systems from all major web browse
 After installing and enabling Cockpit, accessing Cockpit is usually as easy as visiting port 9090 on your server (for example: <https://localhost:9090/> in a browser on the same machine as Cockpit).
 
 But don't worry&mdash;Cockpit itself doesn't eat resources or even run in the background when you're not using it. It only starts on demand, thanks to using systemd socket activation.
-
-## Compatible with your existing workflows
-
-Have a favorite app or command line tool that you use on your servers? You can keep using it. Cockpit uses the same system tooling you would use from the command line. You can switch back and forth between Cockpit and whatever else you like. Cockpit even has  built-in terminal, which is useful  when you connect from a non-Linux device.
 
 ## Using Cockpit
 
@@ -215,18 +211,20 @@ About Cockpit
 {% endcomment %}
 
 {% capture output %}
-<div class="intro-background"></div>
 
-<section class="intro">
-  <div class="wrapper"><div class="grid-center-noBottom lede">
-    <div class="side-left col-7_md-11-middle">{{ intro-left  | markdownify }}</div>
-    <div class="side-right col-5_md-11-bottom"><div class="intro-image">{{ intro-right | markdownify }}</div></div>
-  </div></div>
+<section class="intro intro-background">
+  <div class="intro-lede">
+    {{ intro-lede | markdownify }}
+  </div>
+  <div class="planes"></div>
+  <div class="badge">
+    {{ badge }}
+  </div>
 </section>
+
 
 <div id="page-wrap" class="page-content" role="main">
   <section class="wrapper">
-    <div class="badge">{{ badge }}</div>
 
     <section class="intro-text">{{ intro-text | markdownify }}</section>
 
@@ -253,9 +251,9 @@ About Cockpit
 </div>
 
 <footer class="footerlinks">
-  <div class="wrapper"><div class="grid-wrap-3_md-2_xs-1">
+  <div class="wrapper">
     {{ footer_links | markdownify }}
-  </div></div>
+  </div>
 </footer>
 {% include page_footer.html %}
 
