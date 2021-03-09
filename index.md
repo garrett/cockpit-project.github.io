@@ -189,9 +189,11 @@ About Cockpit
 {% assign release = site.posts | where: "category", "release" | first %}
 {% assign version = release.title | split: "and" | first | split: " " | last %}
 <a href="{{ site.baseurl }}{{ release.url }}" title="{{ release.summary }}">
-  <span class="badge-new">Just released:</span>
+  <span class="badge-new">
+    Released
+    <span class="badge-date">{{ release.date | date: "%-d %b %Y" }}</span>:
+  </span>
   <span class="badge-version">Version {{ version }}</span>
-  <span class="badge-date">{{ release.date | date: "%-d %b %Y" }}</span>
 </a>
 {% endcapture %}
 
