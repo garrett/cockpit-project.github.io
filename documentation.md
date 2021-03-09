@@ -1,5 +1,6 @@
 ---
 title: Cockpit documentation
+class: running-cockpit body-cockpit
 ---
 
 ## Installation
