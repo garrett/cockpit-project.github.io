@@ -51,37 +51,40 @@ html.front-page
 
   .intro-lede
     max-width: 24em
-    padding: 3rem 0 3rem 4rem
+    padding: 3rem 0 1rem 4rem
     grid-area: lede
+
+    a
+      color: inherit
+      font-weight: bold
+      text-decoration: underline
+
 
   .intro
     --remainder: calc((100vw - 65rem) / 2)
-    --offset: 1.5rem
+    --offset: 1rem
     font-family: $headline-font
     font-size: 24px
     line-height: 1.4
     color: #eeeeec
     display: grid
-    grid-template: ". lede planes ." ". badge badge ."
+    grid-template: ". lede planes ." "badge badge badge badge"
     grid-template-columns: var(--remainder) auto 1fr var(--remainder)
     //background: url(../images/site/planes.svg) no-repeat left bottom
     // background-size: auto 4.25rem
     // background-position: calc((100vw - 65rem)/2 - 11rem) 100%
     // z-index: 10
     //min-height: 220px
-    padding: 0 4rem 0 0
+    padding: 0
 
     .planes
       --planes-height: 4.75rem
-      --planes-offset: 1rem
+      --planes-offset: 2.5rem
       grid-area: planes
-      background: url(../images/site/planes.svg) no-repeat right calc(100% - var(--offset) + var(--planes-offset))
+      background: url(../images/site/planes.svg) no-repeat right calc(100% - var(--planes-offset))
       background-size: auto var(--planes-height)
-
-    a
-      color: inherit
-      font-weight: bold
-      text-decoration: underline
+      grid-row: 1 / -1
+      grid-column: 1 / -2
 
     @supports (clip-path: polygon(0 0, 0 0, 0 0, 0 0)) or (-webkit-clip-path: polygon(0 0, 0 0, 0 0, 0 0))
       //background-position: calc((100vw - 65rem)/2 - 11rem) calc(100% - 25px)
@@ -282,9 +285,10 @@ html.front-page
     grid-area: badge
     text-align: right
     position: relative
-    margin: calc(-1 * var(--offset)) 0
+    // margin: 0 0 calc(-1 * var(--offset))
+    top: var(--offset)
 
-    &::after
+    /* &::after
       content: ''
       width: var(--remainder)
       position: absolute
@@ -307,42 +311,46 @@ html.front-page
     &-version,
     &-date
       transition: all 300ms
-      display: block
-      opacity: 0.8
+      // display: block
+      // opacity: 0.8
       font-size: 0.9rem
 
     &-new
       font-weight: inherit
-      grid-area: just
 
     &-version
       font-size: 1.4rem
       font-weight: bold
-      grid-area: version
       color: var(--masthead-background)
 
     &-date
-      grid-area: date
+      // grid-area: date
 
     a
-      transition: all 500ms
+      transition: background 500ms, clip-path 500ms
       background: $badge-color
+      background: linear-gradient(to right, rgba(232, 233, 235, 1) 0%,rgba(255, 253, 217, 1) 100%)
+      background: radial-gradient(farthest-corner at calc(100% - var(--remainder) - 7rem) 60%, #fffdd9 1.5rem, #e8e9eb 100%)
       // border-radius: 100%
       // border: 1px solid $badge-color-border
       // box-shadow: rgba(255, 255, 255, 0.5) 6px 6px 6px inset, rgba(0, 0, 0, 0.125) 4px 4px 12px
       display: block
-      padding: 1.25em 1.75em
+      // padding: 2rem 0
+      height: 5rem
       text-decoration: none !important
       color: #333 !important
-      clip-path: polygon(0 calc(100% - var(--offset)), 0 calc(100% - var(--offset)), 100% 100%, 100% 0px)
+      clip-path: polygon(0 calc(100% - var(--offset)), 0 calc(100% - var(--offset)), 100% 100%, 100% 0)
       display: grid
-      grid-template: "just version" ". date"
-      grid-template-columns: 1fr auto
+      grid-template-columns: 1fr auto var(--remainder)
+      grid-template-rows: 33%
       align-items: baseline
+      align-content: center
       grid-gap: 0 0.5rem
 
       &:hover
         background: mix($badge-color, #fff, 75)
+        background: radial-gradient(farthest-corner at calc(100% - var(--remainder) - 7rem) 60%, #fffdd9 1.5rem, #e8e9eb 150%)
+        // clip-path: polygon(0 var(--offset), 0 100%, 100% 100%, 100% var(--offset))
 
         > span
           opacity: 1
