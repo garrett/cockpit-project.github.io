@@ -199,7 +199,6 @@ html.front-page
     padding: 6rem 1.5rem 3rem
     justify-content: center
     align-items: stretch
-    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 32px)
 
     @media (max-width: $frontpage-content-breakpoint)
       grid-template-columns: auto
@@ -383,3 +382,33 @@ html.front-page
   img
     max-height: 3rem
     max-width: 100%
+
+.footerlinks
+  background: #eeeeec
+  padding: 20px 0
+  font-size: 18px
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 32px)
+
+  display: grid
+  grid-template-columns: repeat(3, calc(#{$content-width} / 3))
+  justify-content: center
+
+  dl a,
+  dt
+    padding: 5px 20px
+
+  dt
+    font-weight: bold
+
+    a
+      margin: -5px -20px
+
+  dd
+    a
+      padding-left: 30px
+
+  a
+    color: #093d69
+
+    &:hover
+      background: white
