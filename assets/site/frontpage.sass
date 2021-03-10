@@ -20,7 +20,7 @@ html.front-page
       display: grid
       grid-template-columns: 1fr minmax(auto, 65rem) 1fr
       margin: 0
-      padding: 0
+      padding: 0 1.5rem
       max-width: 100%
       --grid-column: 2
       
@@ -51,7 +51,7 @@ html.front-page
 
   .intro-lede
     max-width: 24em
-    padding: 3rem 0 1rem 4rem
+    padding: 2rem 0 0 4rem
     grid-area: lede
 
     a
@@ -78,13 +78,17 @@ html.front-page
     padding: 0
 
     .planes
-      --planes-height: 4.75rem
+      --planes-height: 5rem
       --planes-offset: 2.5rem
       grid-area: planes
       background: url(../images/site/planes.svg) no-repeat right calc(100% - var(--planes-offset))
       background-size: auto var(--planes-height)
       grid-row: 1 / -1
       grid-column: 1 / -2
+      margin-right: 1rem
+      
+      @media screen and (min-width: $content-width)
+        margin-right: 0
 
     @supports (clip-path: polygon(0 0, 0 0, 0 0, 0 0)) or (-webkit-clip-path: polygon(0 0, 0 0, 0 0, 0 0))
       //background-position: calc((100vw - 65rem)/2 - 11rem) calc(100% - 25px)
@@ -169,16 +173,23 @@ html.front-page
     padding: 0 0 2rem
 
     h2
-      font-size: 2rem
+      font-size: 2.953125rem
+
+      &:not(:first-child)
+        padding-top: 2.5rem
+
+    h3
+      font-size: 1.5rem
+      font-size: 1.828125rem
 
       &:not(:first-child)
         padding-top: 2rem
 
     .audience-list
-      // margin: 1rem auto
       display: grid
-      grid-template-columns: repeat(3, 1fr)
-      grid-gap: 0 2rem
+      grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr))
+      grid-gap: 1rem 2rem
+      padding: 0.5rem 1rem
 
       strong
         display: block
@@ -187,92 +198,17 @@ html.front-page
         grid-template-columns: auto
 
     .using-cockpit
-      columns: 2
-      column-gap: 1rem
+      columns: 20rem 2
+      column-gap: 2rem
 
-  .blurbs
-    --grid-column: 1 / -1
-    display: grid
-    grid-template-columns: repeat(2, minmax(10rem, 40rem))
-    grid-gap: 3rem
-    background: #eee
-    padding: 6rem 1.5rem 3rem
-    justify-content: center
-    align-items: stretch
 
-    @media (max-width: $frontpage-content-breakpoint)
-      grid-template-columns: auto
-
-    .blurb
-      padding: 2rem
-      border-radius: 1rem
-
-      &:nth-child(odd)
-        position: relative
-        top: -1.5rem
-
-      @media (min-width: $frontpage-content-breakpoint)
-        // grid-template-columns: 1fr 2fr
-        // grid-gap: 2rem 1.5rem
-
-        h3
-          // margin: 0
-          // position: relative
-          // top: -0.75rem
-
-      @media (max-width: #{$frontpage-content-breakpoint})
-
-        h3
-          // padding-top: 2rem
-
-      h2
-        // font-size: 2.5rem
-        // grid-column: 1 / -1
-
-      &:not(:first-child)
-
-        h2
-          // margin-top: 4rem
-
-      h3
-        // font-size: 1.5rem
-        // grid-column: 1
-        // color: #777
-
-        + p, + ul, + ol
-          // margin-top: 0
-
-      p, ul, ol
-        // grid-column: 2 / -1
-
-        @media (min-width: $frontpage-content-breakpoint)
-          /* Rely on vertical grid gap instead */
-          // margin-top: -2rem
-          // position: relative
-
-      .screenshot
-        // Automatically size multiple screenshots to the max width
-        // display: grid
-        // grid-template-columns: repeat(auto-fit, minmax(30%, 1fr))
-        // grid-gap: 0.5rem
-
-        > a
-          // border: 2px solid #ccc
-          // border-radius: 2px
-          display: block
-
-        img
-          // display: flex
-
-    @media (min-width: $frontpage-content-breakpoint)
-      h3
-        // border-bottom: 1px dashed #aaa
 
   footer.footer-cockpit
     margin-top: 0
 
   .badge
-    $badge-color: #fbeabc
+    $badge-color: #fdf7e7
+    $badge-color: #f9e0a2
     $badge-color-border: mix($badge-color, #aaa, 70)
     //position: absolute
     // right: 3em
@@ -303,9 +239,6 @@ html.front-page
       // clip-path: polygon(0 calc(100% - var(--offset)), 0 calc(100% - var(--offset)), 100% 100%, 100% 0px)
       clip-path: polygon(0 0, 0 100%, var(--side) calc(100% - var(--offset)), var(--side) calc(100% - var(--offset)))
 
-    @media screen and (min-width: #{$content-width})
-      //right: -2em
-
     &-new,
     &-version,
     &-date
@@ -326,10 +259,12 @@ html.front-page
       // grid-area: date
 
     a
+      --offset1: var(--offset)
+      --offset2: var(--offset)
       transition: background 500ms, clip-path 500ms
       background: $badge-color
-      background: linear-gradient(to right, rgba(232, 233, 235, 1) 0%,rgba(255, 253, 217, 1) 100%)
-      background: radial-gradient(farthest-corner at calc(100% - var(--remainder) - 7rem) 60%, #fffdd9 1.5rem, #e8e9eb 100%)
+      // background: linear-gradient(to right, rgba(232, 233, 235, 1) 0%,rgba(255, 253, 217, 1) 100%)
+      // background: radial-gradient(farthest-corner at calc(100% - var(--remainder) - 7rem) 60%, #fffdd9 1.5rem, #e8e9eb 100%)
       // border-radius: 100%
       // border: 1px solid $badge-color-border
       // box-shadow: rgba(255, 255, 255, 0.5) 6px 6px 6px inset, rgba(0, 0, 0, 0.125) 4px 4px 12px
@@ -338,17 +273,23 @@ html.front-page
       height: 5rem
       text-decoration: none !important
       color: #333 !important
-      clip-path: polygon(0 calc(100% - var(--offset)), 0 calc(100% - var(--offset)), 100% 100%, 100% 0)
+      clip-path: polygon(0 calc(100% - var(--offset1)), 0 calc(100% - var(--offset2)), 100% 100%, 100% 0)
       display: grid
       grid-template-columns: 1fr auto var(--remainder)
       grid-template-rows: 33%
       align-items: baseline
       align-content: center
       grid-gap: 0 0.5rem
+      
+      @media (max-width: $frontpage-content-breakpoint)
+        --offset1: calc(100% - 1.5rem)
+        --offset2: 0.5rem
+
+
 
       &:hover
         background: mix($badge-color, #fff, 75)
-        background: radial-gradient(farthest-corner at calc(100% - var(--remainder) - 7rem) 60%, #fffdd9 1.5rem, #e8e9eb 150%)
+        //background: radial-gradient(farthest-corner at calc(100% - var(--remainder) - 7rem) 60%, #fffdd9 1.5rem, #e8e9eb 150%)
         // clip-path: polygon(0 var(--offset), 0 100%, 100% 100%, 100% var(--offset))
 
         > span
@@ -385,13 +326,14 @@ html.front-page
 
 .footerlinks
   background: #eeeeec
-  padding: 20px 0
-  font-size: 18px
-  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 32px)
+  padding: 2rem 0
+  margin: 4rem 0 2rem
+  clip-path: polygon(0 32px, 0 calc(100% - 32px), 100% 100%, 100% 0)
 
   display: grid
-  grid-template-columns: repeat(3, calc(#{$content-width} / 3))
+  grid-template-columns: repeat(auto-fill, minmax(auto, calc(#{$content-width} / 3)))
   justify-content: center
+  align-items: center
 
   dl a,
   dt
