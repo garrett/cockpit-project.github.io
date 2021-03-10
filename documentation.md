@@ -10,7 +10,7 @@ class: running-cockpit body-cockpit
 
 ## Cockpit Guide
 
-The [Cockpit guide](/guide/latest/) has several parts:
+The [Cockpit guide](/guide/latest/) contains:
 
 1. [Deployment guide](guide/latest/guide.html)
 2. [Feature internals](/guide/latest/features.html)
