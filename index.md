@@ -20,9 +20,7 @@ The easy-to-use, integrated, glanceable, and open web-based interface for your s
 {% capture intro-text %}
 ## Introducing Cockpit
 
-Cockpit is a web-based graphical interface for servers, intended for everyone.
-
-Design and development of Cockpit focuses on an audience, specifically those who are:
+Cockpit is a web-based graphical interface for servers, intended for everyone, especially those who are:
 
 {:.audience-list}
 - **new to Linux** (including Windows admins)
