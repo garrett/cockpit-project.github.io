@@ -14,26 +14,43 @@ First we set up & capture the content, then we render it in the scaffolding belo
 
 
 {% capture intro-lede %}
-The [easy-to-use](#easy-to-use),
-[integrated](#integrated),
-[glanceable](#glanceable),
-and [open](#open-ended)
-web-based interface for your servers
+The easy-to-use, integrated, glanceable, and open web-based interface for your servers
 {% endcapture %}
 
 {% capture intro-text %}
 ## Introducing Cockpit
 
-Cockpit is a web-based graphical interface for servers and is intended for everyone, especially those who are:
+Cockpit is a web-based graphical interface for servers, intended for everyone.
+
+Design and development of Cockpit focuses on an audience, specifically those who are:
 
 {:.audience-list}
 - **new to Linux** (including Windows admins)
 - **familiar with Linux** and want an easy, graphical way to administer servers
-- **expert admins** who use other tools and want to quickly check-in on systems
+- **expert admins** who mainly use other tools but want an overview on individual systems
+
+Thanks to Cockpit intentionally using system APIs and commands, a whole team of admins can manage a system in the way they prefer, including non-Cockpit commands and utilities right alongside Cockpit.
+
+## Simple to use
+
+Cockpit makes GNU/Linux discoverable. You don't *have to* remember commands at a command-line.
+
+See your server in a web browser and perform system tasks with a mouse. It's easy to start containers, administer storage, configure networks, and inspect logs.  Basically, you can think of Cockpit like a graphical "desktop interface", but for individual servers.
 
 ## Compatible with your existing workflows
 
-Have a favorite app or command line tool that you use on your servers? You can keep using it. Cockpit uses the same system tooling you would use from the command line. You can switch back and forth between Cockpit and whatever else you like. Cockpit even has a built-in terminal, which is useful when you connect from a non-Linux device.
+Have a favorite app or command line tool that you use on your servers? 
+Keep using the command line, Ansible, and your other favorite tools and add Cockpit to the mix with no issues.
+
+Cockpit uses the same system tooling you would use from the command line. You can switch back and forth between Cockpit and whatever else you like. Cockpit even has a built-in terminal, which is useful when you connect from a non-Linux device.
+
+## Integrated
+
+Cockpit uses APIs that already exist on the system. It doesn't reinvent subsystems or add a layer of its own tooling.
+
+By default, Cockpit uses [your system's normal user logins and privileges]({{ site.baseurl }}/guide/latest/privileges). Network-wide logins are also supported through [single-sign-on]({{ site.baseurl }}/guide/latest/sso) and other [authentication]({{ site.baseurl }}/guide/latest/authentication) techniques.
+
+Cockpit itself doesn't eat resources or even run in the background when you're not using it. It runs on demand, thanks to systemd socket activation.
 
 ## Cockpit works (nearly) everywhere
 
@@ -47,21 +64,14 @@ You can install Cockpit on the major distributions, including:
 
 Once Cockpit is up and running, you can access systems from all major web browsers on any operating system (including Windows, MacOS, and Android).
 
-## Simple to use
-
-{:style="text-decoration-skip-ink:none"}
-After installing and enabling Cockpit, accessing Cockpit is usually as easy as visiting port 9090 on your server (for example: <https://localhost:9090/> in a browser on the same machine as Cockpit).
-
-But don't worry&mdash;Cockpit itself doesn't eat resources or even run in the background when you're not using it. It only starts on demand, thanks to using systemd socket activation.
-
 ## Using Cockpit
 
-Using Cockpit means you don't *have to* remember commands at a command-line. But there's a whole lot more you can do with Cockpit:
+Here's a subset of tasks you can perform on each host running Cockpit:
 
 {:.using-cockpit}
-- Keep an eye on your network
-- Easily configure your firewall
-- Manage your storage (including RAID and LUKS partitions)
+- Inspect and change network settings
+- Configure a firewall
+- Manage storage (including RAID and LUKS partitions)
 - Create and manage virtual machines
 - Download and run containers
 - Browse and search system logs
@@ -70,93 +80,43 @@ Using Cockpit means you don't *have to* remember commands at a command-line. But
 - Keep tabs on performance
 - Manage user accounts
 - Inspect and interact with systemd-based services
-- Use a terminal on your remote server in your local web browser
-- Log in to remote servers
+- Use a terminal on a remote server in your local web browser
+- Switch between [multiple Cockpit servers]({{ site.baseurl }}/guide/latest/feature-machines.html)
 - Extend Cockpit's functionality by installing a growing list of apps and add-ons
+- [Write your own custom modules]({{ site.baseurl }}/blog/cockpit-starter-kit.html) to make Cockpit do anything you want
 
 *[RAID]: Redundant Array of Inexpensive Disks
 *[LUKS]: Linux Unified Key Setup (encryption)
 
-Basically, you can think of Cockpit like a graphical "desktop interface", but for your servers.
-{% endcapture %}
+Also troubleshoot and fix pesky problems with ease:
 
-{% assign blurbs_highlight = 6 %}
-
-{% capture blurbs %}
-
-## Easy to use
-
-### Discoverable
-Cockpit makes GNU/Linux discoverable. See your server in a web browser and perform system tasks with a mouse. It's easy to start containers, administer storage, configure networks, and inspect logs.
-
-### Designed & tested
-Cockpit is designed with your goals in mind. We also routinely test Cockpit with usability studies to make it work the way you'd expect. As a result, Cockpit gets easier to use all the time.
-
-### Team-friendly
-Cockpit is friendly enough for those new to Linux and useful for seasoned admins too.
-
-### Packages included
-[Installing and running Cockpit]({{ site.baseurl }}/running.html) is simple. It's already included in most of the major distributions.
-
----
-
-## Integrated
-
-### Plays well with others
-You can jump between a terminal and the web interface at any time. There's even an embedded terminal in Cockpit.
-
-Keep using the command line, Ansible, and your other favorite tools and add Cockpit to the mix with no issues.
-
-A service started via Cockpit can be stopped in a terminal. Likewise, if an error occurs in a terminal, it's also in Cockpit's journal.
-
-### Sign in like normal
-By default, Cockpit uses [your system's normal user logins and privileges]({{ site.baseurl }}/guide/latest/privileges). You don't need to set up any special accounts. Network-wide logins are also supported through [single-sign-on]({{ site.baseurl }}/guide/latest/sso) and other [authentication]({{ site.baseurl }}/guide/latest/authentication) techniques.
-
-### Self-contained
-You don't have to worry about setting up a webserver just to use Cockpit.
-
-### Uses existing APIs
-Cockpit uses APIs that already exist on the system. It doesn't reinvent subsystems or add a layer of its own tooling.
-
-### Efficient
-
-Cockpit only uses memory and CPU when active. When inactive, there is no extra load on your server.
-
----
-
-## Glanceable
-
-### System overview
-Immediately understand the health of your server. Cockpit's overview page shows current statistics and the status of your system.
-
-### Multi-server
-Monitor and administer [several servers]({{ site.baseurl }}/guide/latest/feature-machines.html) at the same time. Add new hosts and your main server will look after its buddies.
-
-### Troubleshoot
-Fix pesky problems with ease.
-
+{:.using-cockpit}
 - Diagnose network issues
 - Spot and react to misbehaving virtual machines
-- Inspect SELinux logs and fix common violations in a click
+- Examine SELinux logs and fix common violations in a click
+- Inspect detailed metrics that correlate CPU load, memory usage, network activity, and storage performance with the system's journal
 
----
+More features appear in Cockpit every release.
 
-## Open-ended
+### Designed & tested
 
-### Pocket-sized
-Around the office or on the road? Use your phone's browser to check and manage systems.
+Cockpit's design keeps your goals in mind.  We test Cockpit with usability studies to make it work the way you'd expect and adjust accordingly. As a result, Cockpit gets easier to use all the time.
 
-### Learn with Cockpit
-Not sure what you can do with your servers? Explore Cockpit's friendly interface and use features you might not even realized existed!
+All code changes have tests which must pass before merging, to ensure stability.
 
-### Extendable
-Have custom tasks? You can [write your own modules]({{ site.baseurl }}/blog/cockpit-starter-kit.html) to plug into Cockpit.
+## Release schedule
 
-### Free & free
-Cockpit's completely free to use and [available under the GNU LGPL](https://github.com/cockpit-project/cockpit/blob/master/COPYING).
+Cockpit has a time-based release cadence, with a new version appearing every two weeks.
 
+## Free as in freedom & free as in no-cost
+
+Cockpit is free to use and [available under the GNU LGPL](https://github.com/cockpit-project/cockpit/blob/master/COPYING).
+
+## Get started
+
+{:style="text-decoration-skip-ink:none"}
+After [installing and enabling Cockpit]({{ site.baseurl }}/running.html), visit port 9090 on your server (for example: <https://localhost:9090/> in a browser on the same machine as Cockpit).
 {% endcapture %}
-
 
 {% capture footer_links %}
 About Cockpit
@@ -226,30 +186,7 @@ About Cockpit
 
 
 <div id="page-wrap" class="page-content" role="main">
-  <section class="wrapper">
-
-    <section class="intro-text">{{ intro-text | markdownify }}</section>
-
-    <section class="blurbs">
-      {% assign blurbs_rendered = blurbs | split: '---' %}
-      {% for blurb in blurbs_rendered %}
-        {% if blurbs_highlight > forloop.index0 %}
-          {% assign highlight = "highlight" %}
-        {% else %}
-          {% assign highlight = "" %}
-        {% endif %}
-
-        {% assign headline = blurb
-        | markdownify
-        | split: newline
-        | where_exp: "line", "line contains 'h2'"
-        | first
-        | strip_html
-        %}
-        <section class="blurb {{ highlight }} section--{{ headline | slugify }}">{{ blurb | markdownify }}</section>
-      {% endfor %}
-    </section>
-  </section>
+  <section class="intro-text wrapper">{{ intro-text | markdownify }}</section>
 </div>
 
 <footer class="footerlinks">
