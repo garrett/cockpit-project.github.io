@@ -187,9 +187,7 @@ About Cockpit
 </div>
 
 <footer class="footerlinks">
-  <div class="wrapper">
-    {{ footer_links | markdownify }}
-  </div>
+  {{ footer_links | markdownify }}
 </footer>
 {% include page_footer.html %}
 
