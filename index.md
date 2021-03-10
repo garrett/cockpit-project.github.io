@@ -28,20 +28,20 @@ Cockpit is a web-based graphical interface for servers, intended for everyone, e
 
 Thanks to Cockpit intentionally using system APIs and commands, a whole team of admins can manage a system in the way they prefer, including non-Cockpit commands and utilities right alongside Cockpit.
 
-## Simple to use
+### Simple to use
 
 Cockpit makes GNU/Linux discoverable. You don't *have to* remember commands at a command-line.
 
 See your server in a web browser and perform system tasks with a mouse. It's easy to start containers, administer storage, configure networks, and inspect logs.  Basically, you can think of Cockpit like a graphical "desktop interface", but for individual servers.
 
-## Compatible with your existing workflows
+### Compatible with your existing workflows
 
 Have a favorite app or command line tool that you use on your servers? 
 Keep using the command line, Ansible, and your other favorite tools and add Cockpit to the mix with no issues.
 
 Cockpit uses the same system tooling you would use from the command line. You can switch back and forth between Cockpit and whatever else you like. Cockpit even has a built-in terminal, which is useful when you connect from a non-Linux device.
 
-## Integrated
+### Integrated
 
 Cockpit uses APIs that already exist on the system. It doesn't reinvent subsystems or add a layer of its own tooling.
 
@@ -83,13 +83,17 @@ Also troubleshoot and fix pesky problems with ease:
 
 More features appear in Cockpit every release.
 
-## Designed & tested
+### Designed & tested
 
 Cockpit's design keeps your goals in mind.  We test Cockpit with usability studies to make it work the way you'd expect and adjust accordingly. As a result, Cockpit gets easier to use all the time.
 
 All code changes have tests which must pass before merging, to ensure stability.
 
-## Cockpit works (nearly) everywhere
+### Free & free
+
+Cockpit is free to use and [available under the GNU LGPL](https://github.com/cockpit-project/cockpit/blob/master/COPYING).
+
+### Cockpit works (nearly) everywhere
 
 You can install Cockpit on the major distributions, including:
 
@@ -103,11 +107,7 @@ Once Cockpit is up and running, you can access systems from all major web browse
 
 ## Release schedule
 
-Cockpit has a time-based release cadence, with a new version appearing every two weeks.
-
-## Free & free
-
-Cockpit is free to use and [available under the GNU LGPL](https://github.com/cockpit-project/cockpit/blob/master/COPYING).
+Cockpit has a time-based release cadence, with new versions appearing every two weeks.
 
 ## Get started
 
