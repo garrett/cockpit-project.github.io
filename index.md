@@ -12,7 +12,6 @@ class: front-page
 First we set up & capture the content, then we render it in the scaffolding below.
 {% endcomment %}
 
-
 {% capture intro-lede %}
 The easy-to-use, integrated, glanceable, and open web-based interface for your servers
 {% endcapture %}
@@ -50,18 +49,6 @@ By default, Cockpit uses [your system's normal user logins and privileges]({{ si
 
 Cockpit itself doesn't eat resources or even run in the background when you're not using it. It runs on demand, thanks to systemd socket activation.
 
-## Cockpit works (nearly) everywhere
-
-You can install Cockpit on the major distributions, including:
-
-{:.distro-logos}
-{%
-  for distro in site.data.distros
-%}- [![{{ distro.name }}](/images/site/os-{{ distro.first}}.svg)]({{ site.baseurl }}/running.html#{{ distro.first }})
-{% endfor %}
-
-Once Cockpit is up and running, you can access systems from all major web browsers on any operating system (including Windows, MacOS, and Android).
-
 ## Using Cockpit
 
 Here's a subset of tasks you can perform on each host running Cockpit:
@@ -96,17 +83,29 @@ Also troubleshoot and fix pesky problems with ease:
 
 More features appear in Cockpit every release.
 
-### Designed & tested
+## Designed & tested
 
 Cockpit's design keeps your goals in mind.  We test Cockpit with usability studies to make it work the way you'd expect and adjust accordingly. As a result, Cockpit gets easier to use all the time.
 
 All code changes have tests which must pass before merging, to ensure stability.
 
+## Cockpit works (nearly) everywhere
+
+You can install Cockpit on the major distributions, including:
+
+{:.distro-logos}
+{%
+  for distro in site.data.distros
+%}- [![{{ distro.name }}](/images/site/os-{{ distro.first}}.svg)]({{ site.baseurl }}/running.html#{{ distro.first }})
+{% endfor %}
+
+Once Cockpit is up and running, you can access systems from all major web browsers on any operating system (including Windows, MacOS, and Android).
+
 ## Release schedule
 
 Cockpit has a time-based release cadence, with a new version appearing every two weeks.
 
-## Free as in freedom & free as in no-cost
+## Free & free
 
 Cockpit is free to use and [available under the GNU LGPL](https://github.com/cockpit-project/cockpit/blob/master/COPYING).
 
