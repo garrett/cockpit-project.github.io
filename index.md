@@ -120,17 +120,20 @@ About Cockpit
 : [Project Ideals and Goals](ideals.html)
 : [Cockpit Blog](blog)
 : [Blog Feeds](blog/feeds/)
+: [Release Notes and Videos](blog/category/release.html)
 : [Search this site](search.html)
 {:.col.footer-links-1}
 
-[Running Cockpit](running.html)
+Running Cockpit
+: [Installation](running.html)
+: [Documentation](documentation.html)
 : [Deployment guide](guide/latest/guide.html)
 : [Feature internals](guide/latest/features.html)
-: [Release Notes and Videos](blog/category/release.html)
 : [File a bug in the issue tracker](https://github.com/cockpit-project/cockpit/issues)
 {:.col.footer-links-2}
 
-[Contributing](https://github.com/cockpit-project/cockpit/wiki/Contributing)
+Contributing
+: [Contribution overview](https://github.com/cockpit-project/cockpit/wiki/Contributing)
 : [Get the source](https://github.com/cockpit-project/cockpit)
 : [Join the mailing list](https://lists.fedorahosted.org/archives/list/cockpit-devel@lists.fedorahosted.org/)
 : [IRC #cockpit on Freenode.net](irc://irc.freenode.net:6667/cockpit)
