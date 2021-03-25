@@ -30,7 +30,7 @@ Thanks to Cockpit intentionally using system APIs and commands, a whole team of 
 
 ### Simple to use
 
-Cockpit makes GNU/Linux discoverable. You don't *have to* remember commands at a command-line.
+Cockpit makes Linux discoverable. You don't *have to* remember commands at a command-line.
 
 See your server in a web browser and perform system tasks with a mouse. It's easy to start containers, administer storage, configure networks, and inspect logs.  Basically, you can think of Cockpit like a graphical "desktop interface", but for individual servers.
 
