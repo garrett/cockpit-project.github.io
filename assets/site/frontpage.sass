@@ -27,19 +27,26 @@ html.front-page
       > *
         grid-column: var(--grid-column)
 
-  .masthead,
-  .intro-background
-    background: var(--masthead-background)
-    background-attachment: fixed
+  .frontpage-background
+    background: var(--masthead-background) url(../images/site/clouds-bw.jpg)
+    background-blend-mode: screen
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: bottom
+    backdrop-filter: blur(3px)
+
+    > header.masthead
+      background: none
+      background: linear-gradient(to bottom, hsla(var(--color-blue), 38%, 100%) 1rem, hsla(var(--color-blue), 40%, 0%))
 
   .intro-lede
     max-width: 24em
-    padding: 2rem 8rem 0 2rem
+    padding: 2rem 8rem 0 1rem
     grid-area: lede
     font-size: 1.5rem
 
     @media (min-width: $on-laptop)
-      padding: 2rem 0 0 4rem
+      padding: 4rem 0 3rem 4rem
       font-size: 1.75rem
 
   .intro

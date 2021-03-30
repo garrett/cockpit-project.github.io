@@ -3,7 +3,6 @@ title: Cockpit Project
 layout: essential
 class: front-page
 ---
-{% include page_header.html %}
 {% capture newline %}
 {% endcapture %}
 
@@ -174,15 +173,18 @@ Contributing
 
 {% capture output %}
 
-<section class="intro intro-background">
-  <div class="intro-lede">
-    {{ intro-lede | markdownify }}
-  </div>
-  <div class="planes"></div>
-  <div class="badge">
-    {{ badge }}
-  </div>
-</section>
+<div class="frontpage-background">
+  {% include page_header.html %}
+  <section class="intro intro-background">
+    <div class="intro-lede">
+      {{ intro-lede | markdownify }}
+    </div>
+    <div class="planes"></div>
+    <div class="badge">
+      {{ badge }}
+    </div>
+  </section>
+</div>
 
 
 <div id="page-wrap" class="page-content" role="main">

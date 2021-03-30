@@ -64,18 +64,28 @@ h1, h2, h3, h4, h5, h6, blockquote, dl, ol, ul, figure, p, pre
 .cockpit-guide .chapter
 
   a[href]
+    --link-color-base: var(--color-blue)
+    --link-color-base-lightness: 40%
+    --link-underline-transparency: 25%
+    --link-color: hsl(var(--link-color-base), var(--link-color-base-lightness))
+    --link-color-underline: hsla(var(--link-color-base), var(--link-color-base-lightness), var(--link-underline-transparency))
+    color: var(--link-color)
+    text-decoration: underline
+    text-decoration-color: var(--link-color-underline)
+    text-decoration-thickness: 1px
+    text-underline-offset: 3px
+    transition: text-decoration-thickness 300ms, text-underline-offset 300ms
 
-    &:link, &:visited, &:hover
-      text-decoration: underline
-
-    &:link
-      color: $link-color
+    &:hover,
+    &:active
+      --link-color-base-lightness: 55%
+      --link-underline-transparency: 40%
+      text-decoration-thickness: 2px
+      text-underline-offset: 2px
 
     &:visited
-      color: $link-color-visited
-
-    &:hover
-      color: $link-color-hover
+      --link-color-base: 240, 40%
+      --link-color-base-lightness: 60%
 
 .page-content
   padding-top: 4rem
@@ -108,9 +118,8 @@ h1, h2, h3, h4, h5, h6
   --accent-color-highlight: #fff
   --accent-color-background: transparent
   --accent-color-links: #fff
-  --masthead-background: #06c
-  --masthead-background: conic-gradient(at 125% 50%,#065e8e,#0469a8,#048bc1,#03b9e4)
-  --masthead-background: #245cca
+  --color-blue: 210, 100%
+  --masthead-background: hsl(var(--color-blue), 40%)
 
 html:not(.front-page)
   // --accent-color: #255ccb
