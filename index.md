@@ -6,6 +6,44 @@ class: front-page
 {% capture newline %}
 {% endcapture %}
 
+{% capture screenshots %}
+login-opt.png: Cockpit's log in prompt (on Fedora 34)
+debian-in-windows-edge.jpg: Cockpit works where you are (Pictured: Connecting to Debian server from Microsoft Edge on Windows 10)
+journal.png: View, filter, and search system logs
+accounts.png: Edit accounts
+firewall-rhel.png: Edit the firewall with ease (Pictured: Cockpit Web Console on Red Hat Enterprise Linux, connected from Fedora 34 Workstation)
+network-overview.png: Manage your network
+overview-f33.png: Have a high-level overview of a server
+software-updates-cve-auto.png: Examine and apply software updates (with changelogs and links to CVEs)
+storage-overview.png: Look at and manage your storage
+system-services-ssh.png: See system services
+system-service-details.png: Manage an individual system service
+vm-create.png: Create and manage virtual machines
+{% endcapture %}
+{% assign screenshots = screenshots | split: newline %}
+
+{% capture screenshots_html %}
+<div class="screenshots">{%
+for screenshot in screenshots
+  %}{%
+  assign filename = screenshot | split: ":" | first | strip
+    | prepend: "/images/screenshot/"
+    | prepend: site.baseurl
+  %}{%
+  assign text = screenshot | replace_first: ":", "©"
+    | split: "©" | last | strip
+  %}{%
+  unless text == ""
+    %}<a class="screenshot zoom"
+    href="{{ filename }}"><img src="{{ filename }}" 
+    title="{{ text }}" alt="{{ text }}"></a>{% 
+  endunless
+  %}{%
+endfor
+%}</div>
+{% endcapture %}
+
+
 {% comment %}
 ##### Content #####
 First we set up & capture the content, then we render it in the scaffolding below.
@@ -26,6 +64,13 @@ Cockpit is a web-based graphical interface for servers, intended for everyone, e
 - **expert admins** who mainly use other tools but want an overview on individual systems
 
 Thanks to Cockpit intentionally using system APIs and commands, a whole team of admins can manage a system in the way they prefer, including non-Cockpit commands and utilities right alongside Cockpit.
+
+### Take a look
+
+A picture is worth a thousand words. Check out these screenshots of Cockpit in action.
+
+{{ screenshots_html }}
+
 
 ### Simple to use
 
