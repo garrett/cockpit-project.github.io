@@ -307,4 +307,31 @@ html.front-page
 .screenshots
   display: grid
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr))
-  grid-gap: 1rem
+  align-items: center
+
+  &:hover
+    > .screenshot
+      transition: opacity 100ms ease-in-out
+    
+    > :not(:hover)
+      opacity: 0.75
+      transition-duration: 200ms
+
+  > .screenshot
+    opacity: 1
+    margin: 0.5rem
+    box-shadow: none
+
+    &, > img
+      transition: all 100ms ease-in-out
+
+    &:hover
+      z-index: 2
+      outline-offset: 0
+      cursor: pointer
+
+      > img
+        outline: 2px solid hsl(var(--color-blue), 40%)
+        transform: scale(125%)
+        transition-duration: 200ms
+        box-shadow: 0 0.125rem 1rem hsla(0,0,0%,50%)
