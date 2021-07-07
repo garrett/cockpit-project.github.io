@@ -229,8 +229,7 @@ end
 
 # Reformat lower-case repo name to titlecase
 def repo_human(repo)
-  repo.split('-').map(&:capitalize).join('-')
-      .sub('Ostree', 'OSTree')
+  repo.match('-') ? repo.downcase : repo.capitalize
 end
 
 # Generate headers and footers based on the template, with substitions for versions
