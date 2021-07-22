@@ -1,5 +1,6 @@
 ---
 title: Cockpit guide archives
+class: cockpit-guide
 ---
 
 The Cockpit Guide is for those deploying Cockpit or developing parts of Cockpit.
