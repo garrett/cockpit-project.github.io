@@ -63,9 +63,14 @@ To re-create your development container from the latest image, run:
 ## Working on Cockpit's session pages
 
 Most contributors want to work on the web (HTML, JavaScript, CSS) parts of Cockpit.
+
+### Install Cockpit
+
 First, install Cockpit on your local machine as described in:
 
 <https://cockpit-project.org/running.html>
+
+### Build session pages
 
 Next, run this command from your top level Cockpit checkout directory, and make
 sure to run it as the same user that you'll use to log into Cockpit below.
@@ -73,19 +78,12 @@ sure to run it as the same user that you'll use to log into Cockpit below.
     mkdir -p ~/.local/share/
     ln -s $(pwd)/dist ~/.local/share/cockpit
 
-This will cause cockpit to read JavaScript, HTML, and CSS files directly from the
+This will cause Cockpit to read JavaScript, HTML, and CSS files directly from the
 locally built package output directory instead of using the system-installed Cockpit
 files.
 
-Now you can log into Cockpit on your local Linux machine at the following
-address. Use the same user and password that you used to log into your Linux
-desktop.
-
-<http://localhost:9090>
-
-After every change to the source files, bundles need to be rebuilt. The
-recommended and fastest way is to do that is using the "watch" mode (`-w` or
-`--watch`) on the page that you are working on. For example, if you want to
+The recommended way to build bundles is to use the "watch" mode
+(`-w` or`--watch`) on the page you are working on. For example, if you want to
 work on anything in [pkg/systemd](https://github.com/cockpit-project/cockpit/tree/main/pkg/systemd/), run:
 
     ./build.js -w systemd
@@ -97,8 +95,16 @@ pkg/lib/), you can also build all pages:
 
     ./build.js -w
 
-Reload cockpit in your browser after page is built. Press `Ctrl`-`C` to
-stop watch mode once you are done with changing the code.
+Now you can log into Cockpit on your local Linux machine at the following
+address, using the same username and password as your desktop login:
+
+<http://localhost:9090>
+
+Watch mode automatically rebuilds when source files are modified. Once it
+finishes building, refresh your browser to see the changes in Cockpit.
+Press `Ctrl-C` to stop watch mode when you are done changing the code.
+
+### Testing
 
 You often need to test code changes in a VM. You can set the `$RSYNC` env
 variable to copy the built page into the given SSH target's
@@ -108,6 +114,8 @@ one of these commands:
 
     RSYNC=c ./build.js -w kdump
     RSYNC=c ./build.js -w
+
+### Returning to system packages
 
 To make Cockpit use system packages again, instead of your checkout directory,
 remove the symlink with the following command and log back into Cockpit:
@@ -152,10 +160,26 @@ which will output a URL to connect to with a browser, such as
 <http://localhost:8765/qunit/base1/test-dbus.html>. Adjust the path for different
 tests and inspect the results there.
 
-You can also run individual tests by specifying the `TESTS` environment
-variable:
+QUnit tests are run as part of a pytest test called `test_browser`.  You can
+run individual tests via `pytest -k`, like so:
 
-    make check TESTS=qunit/base1/test-chan.html
+    pytest -k test-fsinfo.html
+
+You can see JavaScript code coverage information for QUnit tests.  For a
+summary table:
+
+    pytest -k test_browser --js-cov
+
+And for detailed output on uncovered sections in a specific file, something
+like:
+
+    pytest -k test-fsinfo.html --js-cov-files='*/fsinfo.ts'
+
+Coverage information is gathered into the pytest tmpdir, regardless of which
+coverage-related commandline flags are given, so it's also possible to drill
+down after the fact — without re-running tests — using something like:
+
+    test/common/js_coverage.py -m '*/fsinfo.ts' /tmp/pytest-of-*/pytest-current/js-coverage/*
 
 There are also static code and syntax checks which you should run often:
 
@@ -199,7 +223,7 @@ The Python bridge can be used interactively on a local machine:
 To make it easy to test out channels without having to write out messages
 manually, `cockpit.misc.print` can be used:
 
-    PYTHONPATH=src python3 -m cockpit.misc.print open fslist1 path=/etc watch=False | PYTHONPATH=src python3 -m cockpit.bridge
+    PYTHONPATH=src python3 -m cockpit.misc.print open fsinfo path=/etc 'attrs=["type", "entries"]' | PYTHONPATH=src python3 -m cockpit.bridge
 
 These shell aliases might be useful when experimenting with the protocol:
 
